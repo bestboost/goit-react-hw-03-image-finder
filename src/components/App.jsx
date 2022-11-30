@@ -1,4 +1,22 @@
-export const App = () => {
+import React, {Component} from 'react';
+// import { Box } from '../components/Box';
+// import PropTypes from 'prop-types';
+// import Searchbar from './Searchbar/Searchbar';
+// import ImageGallery from './ImageGallery/ImageGallery';
+
+class App extends Component  {
+//   static propTypes = {
+//     state: PropTypes.shape ({
+//        .isRequired
+//     })
+//  };
+
+ state = {
+
+ };
+
+
+ render() {
   return (
     <div
       style={{
@@ -11,6 +29,11 @@ export const App = () => {
       }}
     >
       React homework template
+      {/* <Searchbar onSubmit={}/> */}
+      {/* <ImageGallery/> */}
     </div>
   );
+ };
 };
+
+export default App;
