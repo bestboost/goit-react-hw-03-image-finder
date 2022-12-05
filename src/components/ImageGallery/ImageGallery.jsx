@@ -1,6 +1,6 @@
-// import React from 'react';
-import { Gallery, GalleryBar} from './ImageGallery.styled';
-
+import React from 'react';
+import { Gallery } from './ImageGallery.styled';
+import GalleryBar from 'components/ImageGalleryItem/ImageGalleryItem';
 
 
 const ImageGallery = () => {

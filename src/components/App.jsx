@@ -1,24 +1,31 @@
 import React, {Component} from 'react';
-// import { Box } from '../components/Box';
+import { Box } from '../components/Box';
 // import PropTypes from 'prop-types';
 // import Searchbar from './Searchbar/Searchbar';
 // import ImageGallery from './ImageGallery/ImageGallery';
+// import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+// import LoderButton from './Button/Button';
+import Loader from './Loader/Loader';
 
 class App extends Component  {
 //   static propTypes = {
-//     state: PropTypes.shape ({
-//        .isRequired
+//     state: PropTypes.array ({
+//        id: PropTypes.string.isRequired,
+//         webformatURL: PropTypes.string.isRequired, 
+//         largeImageURL: PropTypes.string.isRequired, 
 //     })
 //  };
 
  state = {
-
+        // id , 
+        // webformatURL, 
+        // largeImageURL
  };
 
 
  render() {
   return (
-    <div
+    <Box
       style={{
         height: '100vh',
         display: 'flex',
@@ -30,8 +37,12 @@ class App extends Component  {
     >
       React homework template
       {/* <Searchbar onSubmit={}/> */}
-      {/* <ImageGallery/> */}
-    </div>
+      {/* <ImageGallery/>  */}
+      {/* <ImageGalleryItem /> */}
+       {/* <LoderButton/> */}
+       <Loader/> 
+      {/* <ModalWindow /> */}
+    </Box>
   );
  };
 };
