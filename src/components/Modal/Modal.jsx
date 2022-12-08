@@ -15,12 +15,14 @@ class ModalWindow extends Component {
 render() {
      
     return (
-        <div class="overlay">
-        <div class="modal">
-          <img src="" alt="" />
-        </div>
-      </div>
+        <Overlay>
+        <Modal>
+          <ModalImage src="" alt="" />
+        </Modal>
+      </Overlay>
       
     );
  };
 };
+
+export default ModalWindow;
