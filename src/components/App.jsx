@@ -27,8 +27,9 @@ class App extends Component  {
       }}
     >
       <Searchbar />
-      <ImageGallery/> 
+      <ImageGallery>
       <ImageGalleryItem />
+      </ImageGallery>
        <LoderButton/>
        {/* <Loader/>  */}
       {/* <ModalWindow /> */}
