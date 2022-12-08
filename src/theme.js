@@ -1,13 +1,7 @@
 export const theme = {
     colors: {
-    //   text: '#a7aaad',
-    //   title: '#2c3338',
-      background: '#3f51b5', 
-    //   secondBackground: '#ffffff',                                
-    //   itemBackground: '#f0f6fc',
+      background: '#3f51b5',
       primary: '#ffffff',
-    //   secondary: '#ffffff',
-      border: '#dcdcde',
     },
 
     fonts: {
@@ -44,9 +38,6 @@ export const theme = {
 },
 
     shadows: {
-        // profile: '0 0 4px 1px rgb(201, 199, 199)',
-        // friendList: '0px 2px 5px 2px rgb(201, 199, 199)',
-        // transaction: '0px 2px 4px rgb(201, 199, 199)',
         serchbar: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)'
 
     }
