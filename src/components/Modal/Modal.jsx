@@ -1,25 +1,40 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Overlay, Modal, ModalImage} from './Modal.styled';
+import {createPortal} from 'react-dom';
+
+const modalRoot = document.querySelector('#modal-root');
 
 
 class ModalWindow extends Component {
+ 
+componentDidMount() {
+  console.log('Modal componentDidMount');
 
-    //       static propTypes = {
-//     state: PropTypes.shape ({
-//        .isRequired
-//     })
-//  };
+  window.addEventListener('keydown', e => {
+    if(e.code === 'Escape') {
+ 
+      this.props.onClose();
+    }
+  });
+
+};
+
+componentDidUpdate() {
+  console.log('Modal componentDidUpdate');
+}
 
 
 render() {
      
-    return (
+    return createPortal(
         <Overlay>
-        <Modal>
+        <Modal> 
+    
+          {this.props.children}
           <ModalImage src="" alt="" />
         </Modal>
-      </Overlay>
+      </Overlay>, modalRoot,
       
     );
  };

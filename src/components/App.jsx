@@ -4,7 +4,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import LoderButton from './Button/Button';
-// import ModalWindow from './Modal/Modal';
+import ModalWindow from './Modal/Modal';
 // import Loader from './Loader/Loader';
 
 class App extends Component  {
@@ -13,10 +13,18 @@ class App extends Component  {
         // id , 
         // webformatURL, 
         // largeImageURL
+        showModal: false,
  };
+
+ toggleModal = () => {
+  this.setState(({showModal}) => ({
+    showModal: !showModal,
+  }));
+ }; 
 
 
  render() {
+  const {showModal} = this.state;
   return (
     <Box
       style={{
@@ -27,14 +35,18 @@ class App extends Component  {
       }}
     >
       <Searchbar />
+      <button type="button" onClick={this.toggleModal}>O</button>
       <ImageGallery>
       <ImageGalleryItem />
       </ImageGallery>
        <LoderButton/>
        {/* <Loader/>  */}
-      {/* <ModalWindow /> */}
+      {showModal && (<ModalWindow onClose={this.toggleModal}>
+       <button type="button" onClick={this.toggleModal}>X</button>
+      </ModalWindow>)} 
+      
     </Box>
-  );
+  ); 
  };
 };
 
