@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {Search, Form, SearchButton, SearchLabel, SearchInput} from './Searchbar.styled'
 
 class Searchbar extends Component {
