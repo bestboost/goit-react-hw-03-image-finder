@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {Overlay, Modal, ModalImage} from './Modal.styled';
 import {createPortal} from 'react-dom';
 
@@ -20,8 +20,8 @@ componentDidMount() {
 
 };
 
-componentDidUpdate() {
-  console.log('Modal componentDidUpdate');
+componentWillUnmount () {
+  console.log('Modal componentWillUnmount');
 }
 
 
