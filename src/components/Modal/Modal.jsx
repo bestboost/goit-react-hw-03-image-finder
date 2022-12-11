@@ -10,7 +10,6 @@ class ModalWindow extends Component {
  
 componentDidMount() {
   console.log('Modal componentDidMount');
-
   window.addEventListener('keydown', this.handleKeyDown);
 };
 

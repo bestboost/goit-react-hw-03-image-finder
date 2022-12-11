@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
 import { GalleryImg, GalleryBar} from './ImageGalleryItem.styled';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class ImageGalleryItem extends Component {
-          static propTypes = {
-       onClick: PropTypes.func.isRequired
-  
-     };
-
+    //       static propTypes = {
+//        .isRequired
+//   
+//  };
 
 render (){
 
     return (
         <GalleryBar>
-           <GalleryImg src="" alt="Image"  onClick={this.props.onClick}/>
+           <GalleryImg src="" alt="" />
         </GalleryBar>
     )
   };
