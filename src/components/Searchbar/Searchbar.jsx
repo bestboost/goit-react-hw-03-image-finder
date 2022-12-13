@@ -16,6 +16,22 @@ class Searchbar extends Component {
   children: null,
 }
 
+state = {
+  inputValue:'',
+};
+
+inputChange = e => {
+  this.setState({inputValue: e.target.value.trim().toLowerCase()});
+}
+
+handlesumit = e => {
+  e.preventDefault();
+  const {inputValue} = this.state;
+
+  this.props.onSearch(inputValue);
+  this.setState({inputValue: ''});
+};
+
 render (){
 
     return (

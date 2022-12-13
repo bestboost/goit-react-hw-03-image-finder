@@ -12,6 +12,7 @@ class App extends Component  {
 
  state = {
        apiImages: [],
+       searchField: '',
         loading: false,
         showModal: false,
  };
@@ -28,6 +29,9 @@ class App extends Component  {
      
   };
 
+  formSubmit = query => {
+    this.setState({searchField: query});
+  }
  
  toggleModal = () => {
   this.setState(({showModal}) => ({
@@ -51,7 +55,7 @@ console.log(datas)
         paddingBottom: '24',
       }}
     > 
-      <Searchbar/>
+      <Searchbar onSearch={this.formSubmit}/>
       <ImageGallery>
         <ImageGalleryItem onClick={this.toggleModal}/>
       </ImageGallery>
