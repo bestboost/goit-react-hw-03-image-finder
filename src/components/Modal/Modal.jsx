@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {Overlay, Modal, ModalImage} from './Modal.styled';
 import {createPortal} from 'react-dom';
 
@@ -7,6 +7,11 @@ const modalRoot = document.querySelector('#modal-root');
 
 
 class ModalWindow extends Component {
+
+  static propTypes = {
+    children: PropTypes.node,
+    onClick: PropTypes.func,
+  }
  
 componentDidMount() {
   console.log('Modal componentDidMount');

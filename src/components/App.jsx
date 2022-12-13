@@ -7,6 +7,7 @@ import LoderButton from './Button/Button';
 import ModalWindow from './Modal/Modal';
 import Loader from './Loader/Loader';
 
+
 class App extends Component  {
 
  state = {
@@ -48,7 +49,7 @@ class App extends Component  {
         paddingBottom: '24',
       }}
     > 
-      <Searchbar />
+      <Searchbar/>
       <ImageGallery>
         <ImageGalleryItem onClick={this.toggleModal}  src={apiImages.webformatURL}/>
       </ImageGallery>
