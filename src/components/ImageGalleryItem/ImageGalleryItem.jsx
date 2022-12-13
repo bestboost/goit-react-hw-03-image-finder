@@ -8,13 +8,24 @@ class ImageGalleryItem extends Component {
   
      };
 
+     state = {
+      activeTabIdx: 0,
+     };
+
+     setActiveTabInx = idx => {
+      this.setState({activeTabIdx: idx});
+     }
 
 render (){
-
+    // const {activeTabIdx} = this.state;
+    // const {items} = this.props;
+    // const activeTab = items[activeTabIdx];
+    // onChange={(() => this.setActiveTabInx(idx))}
     return (
         <GalleryBar>
-           <GalleryImg src="" alt="Image"  onClick={this.props.onClick}/>
+           <GalleryImg  src="" alt="Image"  onClick={this.props.onClick}/>
         </GalleryBar>
+           
     )
   };
 };

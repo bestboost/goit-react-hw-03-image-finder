@@ -11,19 +11,20 @@ import Loader from './Loader/Loader';
 class App extends Component  {
 
  state = {
-       apiImages: [] ,
+       apiImages: [],
         loading: false,
         showModal: false,
  };
+
+
 //  {id: '', webformatURL: '', largeImageURL: ''} 
  componentDidMount() {
   this.setState({loading: true});
 
    fetch('https://pixabay.com/api/?q=cat&page=1&key=29692752-5f9a27c26e6deec7970509d3f&image_type=photo&orientation=horizontal&per_page=12')
       .then(res => res.json())
-      .then(apiImages => this.setState({apiImages}))
+      .then(apiImages => this.setState({apiImages: apiImages.hits}))
       .finally(() => this.setState({loading: false}));
-     
      
   };
 
@@ -38,8 +39,9 @@ class App extends Component  {
 
  render() {
   const {apiImages, showModal} = this.state;
-  const datas = this.state.apiImages.hits
-  console.log(datas)
+  const datas = apiImages
+  
+console.log(datas)
   return (
     <Box
       style={{
@@ -51,7 +53,7 @@ class App extends Component  {
     > 
       <Searchbar/>
       <ImageGallery>
-        <ImageGalleryItem onClick={this.toggleModal}  src={apiImages.webformatURL}/>
+        <ImageGalleryItem onClick={this.toggleModal}/>
       </ImageGallery>
        <LoderButton/>
        {this.state.loading && <Loader/>} 
