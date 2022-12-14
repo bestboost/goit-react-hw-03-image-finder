@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Search, Form, SearchButton, SearchLabel, SearchInput} from './Searchbar.styled'
 import {ReactComponent as SearchIcon} from '../icons/serch.svg';
+import { toast } from 'react-toastify';
+
 
 class Searchbar extends Component {
 
@@ -27,6 +29,11 @@ inputChange = e => {
 handleSubmit = e => {
   e.preventDefault();
   const {inputValue} = this.state;
+
+  if (inputValue.trim() === ''){
+    toast.info('Input search word, please');
+    return
+  }
 
   this.props.onSearch(inputValue);
   this.setState({inputValue: ''});

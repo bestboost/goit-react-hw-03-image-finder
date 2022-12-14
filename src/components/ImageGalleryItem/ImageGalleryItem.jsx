@@ -12,6 +12,8 @@ class ImageGalleryItem extends Component {
       activeTabIdx: 0,
      };
 
+    
+
      setActiveTabInx = idx => {
       this.setState({activeTabIdx: idx});
      }
