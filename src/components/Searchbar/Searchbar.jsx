@@ -21,10 +21,10 @@ state = {
 };
 
 inputChange = e => {
-  this.setState({inputValue: e.target.value.trim().toLowerCase()});
+  this.setState({inputValue: e.currentTarget.value.trim().toLowerCase()});
 }
 
-handlesumit = e => {
+handleSubmit = e => {
   e.preventDefault();
   const {inputValue} = this.state;
 
@@ -36,7 +36,7 @@ render (){
 
     return (
         <Search>
-  <Form>
+  <Form onSubmit={this.handleSubmit}>
     <SearchButton type="submit" >{this.props.children}
       <SearchIcon width="24" height="24" fill="#5b5b5b"/>
         <SearchLabel >Search</SearchLabel>
@@ -47,6 +47,8 @@ render (){
       autocomplete="off"
       autoFocus
       placeholder="Search images and photos"
+      value={this.state.inputValue}
+      onChange={this.inputChange}
     />
   </Form>
 </Search>
