@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 class App extends Component  {
 
  state = {
-       apiImages: '',
+       apiImages: null,
        searchField: '',
         loading: false,
         showModal: false,
@@ -30,24 +30,29 @@ class App extends Component  {
      const prevValue = prevState.inputValue;
      const nextValue = this.state.inputValue;
 
+
     if (prevValue !== nextValue) {
-      this.setState({loading: true})
-      console.log('change value');
+      this.setState({loading: true, apiImages: null})
       
       fetch(`https://pixabay.com/api/?q=${nextValue}&page=1&key=29692752-5f9a27c26e6deec7970509d3f&image_type=photo&orientation=horizontal&per_page=12`)
       .then(response => {
         if(response.ok) {
           return response.json();
-        }
-
+        } 
+   
         return Promise.reject(
           new Error(`Upsss, no image ${nextValue}!`),
         );
+     
       })
+
+      
       .then(apiImages => this.setState({apiImages: apiImages.hits})) 
-      .catch(error => this.setState({error}))
+      .catch(error => this.setState({error})) 
       .finally(() => this.setState({loading: false}));
-    }
+    
+       
+    } 
   }
 
   formSubmit =  inputValue => {
@@ -64,9 +69,11 @@ class App extends Component  {
 
  render() {
   const {apiImages, showModal, loading, error} = this.state;
+
   const datas = apiImages
-  
 console.log(datas)
+
+
   return (
     <Box
       style={{
@@ -77,8 +84,8 @@ console.log(datas)
       }}
     >  
       <Searchbar onSearch={this.formSubmit}/>
-    
-      {apiImages  && <ImageGallery>
+     
+      {apiImages && <ImageGallery>
            <ImageGalleryItem onClick={this.toggleModal}/>
            <LoderButton/>
       </ImageGallery>

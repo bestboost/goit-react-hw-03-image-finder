@@ -8,9 +8,8 @@ import { toast } from 'react-toastify';
 class Searchbar extends Component {
 
       static propTypes = {
-        // onClick: PropTypes.func,
+        onClick: PropTypes.func,
         children: PropTypes.node,
-      //  .isRequired
  };
 
  deafultProps = {
@@ -44,7 +43,7 @@ render (){
     return (
         <Search>
   <Form onSubmit={this.handleSubmit}>
-    <SearchButton type="submit" >{this.props.children}
+    <SearchButton type="submit"  aria-label="Find images">{this.props.children}
       <SearchIcon width="24" height="24" fill="#5b5b5b"/>
         <SearchLabel >Search</SearchLabel>
     </SearchButton>
