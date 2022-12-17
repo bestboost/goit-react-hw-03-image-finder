@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Box } from '../components/Box';
 import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
+// import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import LoderButton from './Button/Button';
 import ModalWindow from './Modal/Modal';
@@ -70,10 +70,6 @@ class App extends Component  {
  render() {
   const {apiImages, showModal, loading, error} = this.state;
 
-  const datas = apiImages
-console.log(datas)
-
-
   return (
     <Box
       style={{
@@ -85,11 +81,12 @@ console.log(datas)
     >  
       <Searchbar onSearch={this.formSubmit}/>
      
-      {apiImages && <ImageGallery>
-           <ImageGalleryItem onClick={this.toggleModal}/>
-           <LoderButton/>
-      </ImageGallery>
+      {apiImages && 
+           <ImageGalleryItem images={this.state.apiImages} onClick={this.toggleModal}/>
+          
+     
       }
+       <LoderButton/>
        {error && <h1>{error.message}</h1>}
       {loading && <Loader/>} 
       {showModal && <ModalWindow onClose={this.toggleModal}/>}
