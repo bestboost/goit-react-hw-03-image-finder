@@ -44,7 +44,7 @@ render (){
         <Search>
   <Form onSubmit={this.handleSubmit}>
     <SearchButton type="submit"  aria-label="Find images">{this.props.children}
-      <SearchIcon width="24" height="24" fill="#5b5b5b"/>
+      <SearchIcon width="20" height="20" fill="#5b5b5b"/>
         <SearchLabel >Search</SearchLabel>
     </SearchButton>
 

@@ -36,8 +36,8 @@ render (){
       <Gallery>
       
         {this.props.images.map(image => (
-        <GalleryBar key={image.id}>
-           <GalleryImg  src={image.webformatURL} alt="Image"  onClick={this.props.onClick}/>
+        <GalleryBar key={image.id} onClick={() => this.props.onSelect(image.largeImageURL)}>
+           <GalleryImg  src={image.webformatURL} alt="Image"  onClick={this.props.onClick} />
         </GalleryBar>
         ))}
     </ Gallery> 

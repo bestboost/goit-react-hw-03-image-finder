@@ -1,6 +1,15 @@
 import styled from 'styled-components'; 
 
+export const LoadButtonBox = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+padding-top: ${p => p.theme.space[3]}px;
+padding-bottom: ${p => p.theme.space[3]}px;
+`
+
 export const LoadButton = styled.button`
+width: 20%;
 padding: 8px 16px;
 border-radius: 2px;
 background-color: #3f51b5;

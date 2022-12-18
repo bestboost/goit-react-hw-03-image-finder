@@ -19,6 +19,7 @@ class App extends Component  {
         showModal: false,
         inputValue: '',
         error: null,
+        selectedImage: null,
  };
 
 
@@ -65,7 +66,9 @@ class App extends Component  {
   }));
  }; 
 
-
+selectImage = largeImageURL => {
+  this.setState({selectedImage: largeImageURL});
+}
 
  render() {
   const {apiImages, showModal, loading, error} = this.state;
@@ -82,14 +85,13 @@ class App extends Component  {
       <Searchbar onSearch={this.formSubmit}/>
      
       {apiImages && 
-           <ImageGalleryItem images={this.state.apiImages} onClick={this.toggleModal}/>
-          
-     
+           <ImageGalleryItem images={this.state.apiImages} onClick={this.toggleModal} onSelect={this.selectImage}/>  
       }
-       <LoderButton/>
+       {apiImages && 
+        <LoderButton/>}
        {error && <h1>{error.message}</h1>}
       {loading && <Loader/>} 
-      {showModal && <ModalWindow onClose={this.toggleModal}/>}
+      {showModal && <ModalWindow onClose={this.toggleModal} src={this.state.selectedImage}/>}
       <ToastContainer autoClose={3000} position="top-center"/>
     </Box>
   ); 

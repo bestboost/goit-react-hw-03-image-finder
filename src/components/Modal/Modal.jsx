@@ -12,7 +12,7 @@ class ModalWindow extends Component {
     children: PropTypes.node,
     onClick: PropTypes.func,
   }
- 
+
 componentDidMount() {
   console.log('Modal componentDidMount');
   window.addEventListener('keydown', this.handleKeyDown);
@@ -37,12 +37,14 @@ console.log('drop')
   }
 }
 
+
+
 render() {
-     
+   const {src} = this.props  
     return createPortal(
         <Overlay onClick={this.handleBackdropClick}>
         <Modal> {this.props.children}
-          <ModalImage src="" alt="" />
+       {src &&  <ModalImage src={src} alt="image"/>}
         </Modal>
       </Overlay>, modalRoot,
       

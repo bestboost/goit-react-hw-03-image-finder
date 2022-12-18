@@ -7,7 +7,8 @@ position: sticky;
 display: flex;
 justify-content: center;
 align-items: center;
-min-height: 64px;
+height: 50px;
+margin-bottom: ${p => p.theme.space[3]}px;
 padding-right: ${p => p.theme.space[5]}px;
 padding-left: ${p => p.theme.space[5]}px;
 padding-top: ${p => p.theme.space[4]}px;
@@ -22,6 +23,7 @@ box-shadow: ${p => p.theme.shadows.serchbar};
   align-items: center;
   width: 100%;
   max-width: 600px;
+  height: 37px;
 
   border-radius: ${p => p.theme.radii.normal};
   background-color: ${p => p.theme.colors.primary};

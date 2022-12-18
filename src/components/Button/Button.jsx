@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import PropTypes from 'prop-types';
-import {LoadButton} from './Button.styled'; 
+import {LoadButtonBox, LoadButton} from './Button.styled'; 
 
 
 
@@ -14,7 +14,9 @@ class LoderButton extends Component {
  render (){
 
     return (
-      <LoadButton type="button">Load more</LoadButton>
+      <LoadButtonBox>
+        <LoadButton type="button">Load more</LoadButton>
+      </LoadButtonBox> 
     );
  };
 };
