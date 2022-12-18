@@ -11,11 +11,12 @@ class LoderButton extends Component {
 //     })
 //  };
 
+
  render (){
 
     return (
       <LoadButtonBox>
-        <LoadButton type="button">Load more</LoadButton>
+        <LoadButton type="button" onClick={this.props.onClick}>Load more</LoadButton>
       </LoadButtonBox> 
     );
  };

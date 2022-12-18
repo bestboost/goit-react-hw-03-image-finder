@@ -20,19 +20,18 @@ class App extends Component  {
         inputValue: '',
         error: null,
         selectedImage: null,
+        page: 1,
  };
 
-
-//  {id: '', webformatURL: '', largeImageURL: ''} 
-
-
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
 
      const prevValue = prevState.inputValue;
      const nextValue = this.state.inputValue;
+     const prevPage = prevState.page;
+     const nextPage = this.state.page;
 
-
-    if (prevValue !== nextValue) {
+    if (prevValue !== nextValue ||
+      prevPage !== nextPage ) {
       this.setState({loading: true, apiImages: null})
       
       fetch(`https://pixabay.com/api/?q=${nextValue}&page=1&key=29692752-5f9a27c26e6deec7970509d3f&image_type=photo&orientation=horizontal&per_page=12`)
@@ -47,17 +46,15 @@ class App extends Component  {
      
       })
 
-      
       .then(apiImages => this.setState({apiImages: apiImages.hits})) 
       .catch(error => this.setState({error})) 
       .finally(() => this.setState({loading: false}));
     
-       
     } 
   }
 
   formSubmit =  inputValue => {
-    this.setState({ inputValue});
+    this.setState({inputValue});
   }
  
  toggleModal = () => {
@@ -69,6 +66,12 @@ class App extends Component  {
 selectImage = largeImageURL => {
   this.setState({selectedImage: largeImageURL});
 }
+
+loadMore = () => {
+  this.setState(prevState => ({
+    page: prevState.page + 1,
+  }));
+};
 
  render() {
   const {apiImages, showModal, loading, error} = this.state;
@@ -88,7 +91,7 @@ selectImage = largeImageURL => {
            <ImageGalleryItem images={this.state.apiImages} onClick={this.toggleModal} onSelect={this.selectImage}/>  
       }
        {apiImages && 
-        <LoderButton/>}
+        <LoderButton onClick={this.loadMore}/>}
        {error && <h1>{error.message}</h1>}
       {loading && <Loader/>} 
       {showModal && <ModalWindow onClose={this.toggleModal} src={this.state.selectedImage}/>}
