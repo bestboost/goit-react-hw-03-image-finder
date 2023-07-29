@@ -14,18 +14,15 @@ class ModalWindow extends Component {
   }
 
 componentDidMount() {
-  console.log('Modal componentDidMount');
   window.addEventListener('keydown', this.handleKeyDown);
 };
 
 componentWillUnmount () {
-  console.log('Modal componentWillUnmount');
-  window.addEventListener('keydown', this.handleKeyDown);
+  window.removeEventListener('keydown', this.handleKeyDown);
 }
 
-handleKeyDown = e => {
-  console.log('Esc')
-  if(e.code === 'Escape') {
+handleKeyDown = event => {
+  if(event.code === 'Escape') {
     this.props.onClose();
   }
 };
@@ -34,10 +31,8 @@ handleBackdropClick = event => {
 console.log('drop')
   if(event.currentTarget === event.target) {
     this.props.onClose();
-  }
-}
-
-
+  };
+};
 
 render() {
    const {src} = this.props  

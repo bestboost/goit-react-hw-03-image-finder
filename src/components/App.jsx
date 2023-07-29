@@ -13,14 +13,14 @@ import 'react-toastify/dist/ReactToastify.css';
 class App extends Component  {
 
  state = {
-       apiImages: null,
-       searchField: '',
-        loading: false,
-        showModal: false,
-        inputValue: '',
-        error: null,
-        selectedImage: null,
-        page: 1,
+      apiImages: null,
+      searchField: '',
+      loading: false,
+      showModal: false,
+      inputValue: '',
+      error: null,
+      selectedImage: null,
+      page: 1,
  };
 
   componentDidUpdate(_, prevState) {
@@ -34,7 +34,7 @@ class App extends Component  {
       prevPage !== nextPage ) {
       this.setState({loading: true, apiImages: null})
       
-      fetch(`https://pixabay.com/api/?q=${nextValue}&page=1&key=29692752-5f9a27c26e6deec7970509d3f&image_type=photo&orientation=horizontal&per_page=12`)
+      fetch(`https://pixabay.com/api/?q=${nextValue}&page=${nextPage}&key=29692752-5f9a27c26e6deec7970509d3f&image_type=photo&orientation=horizontal&per_page=12`)
       .then(response => {
         if(response.ok) {
           return response.json();
