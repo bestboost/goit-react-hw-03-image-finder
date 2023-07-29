@@ -28,7 +28,6 @@ handleKeyDown = event => {
 };
 
 handleBackdropClick = event => {
-console.log('drop')
   if(event.currentTarget === event.target) {
     this.props.onClose();
   };
