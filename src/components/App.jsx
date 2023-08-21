@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import { Box } from '../components/Box';
 import Searchbar from './Searchbar/Searchbar';
-// import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import LoderButton from './Button/Button';
 import ModalWindow from './Modal/Modal';
 import Loader from './Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 class App extends Component  {
 
@@ -24,7 +22,6 @@ class App extends Component  {
  };
 
   componentDidUpdate(_, prevState) {
-
      const prevValue = prevState.inputValue;
      const nextValue = this.state.inputValue;
      const prevPage = prevState.page;
@@ -57,17 +54,17 @@ class App extends Component  {
     this.setState({inputValue});
   }
  
- toggleModal = () => {
+  toggleModal = () => {
   this.setState(({showModal}) => ({
     showModal: !showModal,
   }));
  }; 
 
-selectImage = largeImageURL => {
+  selectImage = largeImageURL => {
   this.setState({selectedImage: largeImageURL});
 }
 
-loadMore = () => {
+  loadMore = () => {
   this.setState(prevState => ({
     page: prevState.page + 1,
   }));
@@ -90,10 +87,10 @@ loadMore = () => {
       {apiImages && 
            <ImageGalleryItem images={this.state.apiImages} onClick={this.toggleModal} onSelect={this.selectImage}/>  
       }
-       {apiImages && 
+       {apiImages === (null || []) &&
         <LoderButton onClick={this.loadMore}/>}
        {error && <h1>{error.message}</h1>}
-      {loading && <Loader/>} 
+      {loading &&  <Loader/>} 
       {showModal && <ModalWindow onClose={this.toggleModal} src={this.state.selectedImage}/>}
       <ToastContainer autoClose={3000} position="top-center"/>
     </Box>
