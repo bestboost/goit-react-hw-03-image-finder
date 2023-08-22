@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Box } from '../components/Box';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
@@ -7,52 +7,53 @@ import ModalWindow from './Modal/Modal';
 import Loader from './Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import fetchImagesAPI from './services/fetchImages-api';
 
-class App extends Component  {
+class App extends Component {
 
- state = {
-      apiImages: null,
-      searchField: '',
-      loading: false,
-      showModal: false,
-      inputValue: '',
-      error: null,
-      selectedImage: null,
-      page: 1,
- };
+  state = {
+    apiImages: [],
+    searchField: '',
+    loading: false,
+    showModal: false,
+    inputValue: '',
+    error: null,
+    selectedImage: null,
+    page: 1,
+    loadingBtn: false,
+  };
 
   componentDidUpdate(_, prevState) {
-     const prevValue = prevState.inputValue;
-     const nextValue = this.state.inputValue;
-     const prevPage = prevState.page;
-     const nextPage = this.state.page;
+    const prevValue = prevState.inputValue;
+    const nextValue = this.state.inputValue;
+    const prevPage = prevState.page;
+    const nextPage = this.state.page;
 
     if (prevValue !== nextValue ||
-      prevPage !== nextPage ) {
-      this.setState({loading: true, apiImages: null})
+      prevPage !== nextPage) {
+      this.setState({ loading: true })
       
-      fetch(`https://pixabay.com/api/?q=${nextValue}&page=${nextPage}&key=29692752-5f9a27c26e6deec7970509d3f&image_type=photo&orientation=horizontal&per_page=12`)
-      .then(response => {
-        if(response.ok) {
-          return response.json();
-        } 
-   
-        return Promise.reject(
-          new Error(`Upsss, no image ${nextValue}!`),
-        );
-     
-      })
+      fetchImagesAPI
+        .fetchImages(nextValue, nextPage)
+        .then(response => { return response })
+        .then(apiImages => this.setState(
+          ({ apiImages: apiImages.hits })))
+        .catch(error => this.setState({ error }))
+        .finally(() => this.setState({ loading: false }));    
+    }
+  };
 
-      .then(apiImages => this.setState({apiImages: apiImages.hits})) 
-      .catch(error => this.setState({error})) 
-      .finally(() => this.setState({loading: false}));
-    
-    } 
-  }
+       
+  showLoadingBtn = (response) => {
+    //як передати response?
+    if (this.state.page < Math.ceil(response.totalHits % 12)) {
+      this.setState({ loadingBtn: true })
+    }
+  };
 
-  formSubmit =  inputValue => {
-    this.setState({inputValue});
-  }
+  formSubmit = inputValue => {
+    this.setState({ inputValue });
+  };
  
   toggleModal = () => {
   this.setState(({showModal}) => ({
@@ -71,7 +72,7 @@ class App extends Component  {
 };
 
  render() {
-  const {apiImages, showModal, loading, error} = this.state;
+  const {apiImages, showModal, loading, error, loadingBtn} = this.state;
 
   return (
     <Box
@@ -85,9 +86,10 @@ class App extends Component  {
       <Searchbar onSearch={this.formSubmit}/>
      
       {apiImages && 
-           <ImageGalleryItem images={this.state.apiImages} onClick={this.toggleModal} onSelect={this.selectImage}/>  
-      }
-       {apiImages === (null || []) &&
+        <ImageGalleryItem images={this.state.apiImages}
+                          onClick={this.toggleModal}
+                          onSelect={this.selectImage} /> }
+       {loadingBtn &&
         <LoderButton onClick={this.loadMore}/>}
        {error && <h1>{error.message}</h1>}
       {loading &&  <Loader/>} 
