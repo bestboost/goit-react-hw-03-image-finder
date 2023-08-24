@@ -31,7 +31,7 @@ class App extends Component {
 
     if (prevValue !== nextValue ||
       prevPage !== nextPage) {
-      this.setState({ loading: true, apiImages: [] })
+      this.setState({ loading: true })
       
       fetchImagesAPI
         .fetchImages(nextValue, nextPage)
