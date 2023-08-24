@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Box } from '../components/Box';
 import Searchbar from './Searchbar/Searchbar';
-import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import ImageGallery from './ImageGallery/ImageGallery';
 import LoderButton from './Button/Button';
 import ModalWindow from './Modal/Modal';
 import Loader from './Loader/Loader';
@@ -47,13 +47,6 @@ class App extends Component {
     };
   };
 
-  // showLoadBtn(response) {
-
-  //   if (this.state.page < Math.ceil(response.totalHits / 12)){
-  //     this.setState({ showBtn: true })
-  //   };
-  // };
-
   formSubmit = inputValue => {
     this.setState({ inputValue, apiImages: [], page:1 });
   };
@@ -89,7 +82,7 @@ class App extends Component {
       <Searchbar onSearch={this.formSubmit}/>
      
       {apiImages && 
-        <ImageGalleryItem images={this.state.apiImages}
+        <ImageGallery images={this.state.apiImages}
                           onClick={this.toggleModal}
                           onSelect={this.selectImage} /> }
        {showBtn &&
