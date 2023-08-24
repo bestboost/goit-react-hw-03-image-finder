@@ -20,7 +20,7 @@ class App extends Component {
     error: null,
     selectedImage: null,
     page: 1,
-    loadingBtn: false,
+    showBtn: false,
   };
 
   componentDidUpdate(_, prevState) {
@@ -31,28 +31,26 @@ class App extends Component {
 
     if (prevValue !== nextValue ||
       prevPage !== nextPage) {
-      this.setState({ loading: true })
+      this.setState({ loading: true, apiImages: [] })
       
       fetchImagesAPI
         .fetchImages(nextValue, nextPage)
-        .then(response => { return response })
-        .then(apiImages => this.setState(
-          ({ apiImages: apiImages.hits })))
+        .then(apiImages => this.setState(prevState =>
+        ({apiImages: [...prevState.apiImages, ...apiImages.hits],
+          showBtn: this.showLoadBtn})))
         .catch(error => this.setState({ error }))
         .finally(() => this.setState({ loading: false }));    
-    }
+    };
   };
 
-       
-  showLoadingBtn = (response) => {
-    //як передати response?
-    if (this.state.page < Math.ceil(response.totalHits % 12)) {
-      this.setState({ loadingBtn: true })
-    }
+  showLoadBtn(response) {
+    if (this.state.page < Math.ceil(response.totalHits % 12)){
+          this.setState({ showBtn: true })
+    };
   };
 
   formSubmit = inputValue => {
-    this.setState({ inputValue });
+    this.setState({ inputValue, apiImages: [], page:1 });
   };
  
   toggleModal = () => {
@@ -72,7 +70,7 @@ class App extends Component {
 };
 
  render() {
-  const {apiImages, showModal, loading, error, loadingBtn} = this.state;
+  const {apiImages, showModal, loading, error, showBtn} = this.state;
 
   return (
     <Box
@@ -89,7 +87,7 @@ class App extends Component {
         <ImageGalleryItem images={this.state.apiImages}
                           onClick={this.toggleModal}
                           onSelect={this.selectImage} /> }
-       {loadingBtn &&
+       {showBtn &&
         <LoderButton onClick={this.loadMore}/>}
        {error && <h1>{error.message}</h1>}
       {loading &&  <Loader/>} 
