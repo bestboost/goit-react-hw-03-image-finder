@@ -35,19 +35,24 @@ class App extends Component {
       
       fetchImagesAPI
         .fetchImages(nextValue, nextPage)
-        .then(apiImages => this.setState(prevState =>
-        ({apiImages: [...prevState.apiImages, ...apiImages.hits],
-          showBtn: this.showLoadBtn})))
+        .then(response => response)
+        .then(response => this.setState(prevState =>
+        ({         
+          apiImages: [...prevState.apiImages, ...response.hits],
+          showBtn:  this.state.page < Math.ceil(response.totalHits / 12)
+        })
+        ))
         .catch(error => this.setState({ error }))
         .finally(() => this.setState({ loading: false }));    
     };
   };
 
-  showLoadBtn(response) {
-    if (this.state.page < Math.ceil(response.totalHits % 12)){
-          this.setState({ showBtn: true })
-    };
-  };
+  // showLoadBtn(response) {
+
+  //   if (this.state.page < Math.ceil(response.totalHits / 12)){
+  //     this.setState({ showBtn: true })
+  //   };
+  // };
 
   formSubmit = inputValue => {
     this.setState({ inputValue, apiImages: [], page:1 });
